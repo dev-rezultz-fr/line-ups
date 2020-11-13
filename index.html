@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, minimum-scale=1, maximum-scale=1, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+	<base href="/" />
+	<title>
+		Line-ups, gère tes foots à 5
+	</title>
+	<meta name="description" content="gère tes foots à 5 : ne te retrouve jamais à 9 ou 8 sur le terrain..." />
+	<link rel="icon" href="/favicon.ico" />
+	<link rel="manifest" href="/manifest.json" />
+	<meta name="theme-color" content="#3f51b5" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="application-name" content="ReZultZ" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+	<meta name="apple-mobile-web-app-title" content="ReZultZ" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="/static/rzz-icon.png" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=block" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Material+Icons+Round&display=block" rel="stylesheet" defer />
+</head>
+
+<body class="col">
+	<style>
+		html {
+			--rzz-primary: green;
+			--rzz-secondary: rgb(100, 180, 245);
+			--rzz-height: 60px;
+			--rzz-width: 640px;
+		}
+
+		* {
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+
+		body {
+			font-family: Roboto;
+			margin: 0;
+			background-color: #efefef;
+		}
+
+		header {
+			height: var(--rzz-height);
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 10001;
+		}
+
+		header>.row {
+			margin: auto;
+			width: var(--rzz-width);
+		}
+
+		header,
+		footer>.row>* {
+			line-height: var(--rzz-height);
+		}
+
+		i {
+			cursor: pointer;
+			padding: 16px 11px 22px 11px;
+			margin-right: 11px;
+			margin-top: 2px;
+		}
+
+		footer>.row>a {
+			padding-bottom: 16px;
+			border-top: 6px solid white;
+		}
+
+		footer>.row>a.active {
+			border-top: 6px solid var(--rzz-primary);
+		}
+
+		footer {
+			display: none;
+		}
+
+		#title {
+			padding-top: 0px;
+			font-size: 1.8em;
+			font-weight: bold;
+			font-family: rezultz, Roboto;
+		}
+
+		#shell {
+			padding-top: var(--rzz-height);
+			width: var(--rzz-width);
+			padding-bottom: var(--rzz-height);
+			margin: auto;
+		}
+
+		a:link,
+		a:visited,
+		a:hover,
+		a:active {
+			color: inherit;
+			text-decoration: none;
+			cursor: pointer;
+		}
+
+		.row {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+
+		.col {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.sub {
+			height: 24px;
+		}
+
+		.flex {
+			flex: 1;
+		}
+
+		.flex2 {
+			flex: 2;
+		}
+
+		.flex3 {
+			flex: 3;
+		}
+
+		.bg-prim {
+			color: #fff;
+			background-color: var(--rzz-primary);
+		}
+
+		.prim {
+			color: var(--rzz-primary);
+			background-color: white;
+		}
+
+		.grey {
+			color: #ddd;
+		}
+
+		.bg-grey {
+			background-color: #ddd;
+		}
+
+		.card {
+			border-radius: 6px;
+			margin: 13px 0;
+			height: 120px;
+		}
+
+		.circle {
+			height: 62px;
+			border-radius: 50%;
+			width: 62px;
+		}
+
+		.center {
+			text-align: center;
+		}
+
+		.placeholder {
+			margin-top: 6px;
+			height: 20px;
+			border-radius: 8px;
+		}
+
+		.sub>.placeholder,
+		.sub>i {
+			height: 12px;
+		}
+
+		.loading {
+			animation: fading 2s infinite;
+		}
+
+		@media only screen and (max-device-width: 640px) {
+
+			header>.row,
+			#shell {
+				width: 100%;
+			}
+
+			.circle {
+				height: 48px;
+				width: 48px;
+			}
+		}
+
+		@keyframes fading {
+			0% {
+				opacity: 1;
+			}
+
+			50% {
+				opacity: 0.5;
+			}
+
+			100% {
+				opacity: 1;
+			}
+		}
+	</style>
+	<header class="no-bounce bg-prim">
+		<div class="row">
+			<a id="title" class="flex"><i class="material-icons-round">sports_soccer</i>Line-ups</a>
+		</div>
+	</header>
+	<lup-shell id="shell" class="flex">
+		<div class="prim card col">
+			<div class="row flex">
+				<div class="flex"></div>
+				<i class="material-icons-round loading grey">group</i>
+				<div class="flex3 bg-grey placeholder"></div>
+				<div class="flex3"></div>
+				<div class="flex bg-grey placeholder"></div>
+				<div class="flex center">/</div>
+				<div class="flex bg-grey placeholder"></div>
+				<div class="flex"></div>
+			</div>
+			<div class="row sub"></div>
+			<div class="row sub">
+				<div class="flex"></div>
+				<i class="material-icons-round loading grey">today</i>
+				<div class="flex3 bg-grey placeholder"></div>
+				<div class="flex3"></div>
+				<i class="material-icons-round loading grey">location_on</i>
+				<div class="flex3 bg-grey placeholder"></div>
+				<div class="flex"></div>
+			</div>
+			<div class="row sub"></div>
+		</div>
+	</lup-shell>
+	<script type="text/javascript">
+		//Prevent Header & Footer From Showing Browser Chrome
+      document.addEventListener(
+        "touchmove",
+        function(event) {
+          if (
+            event.target.parentNode.classList.contains("no-bounce") ||
+            event.target.classList.contains("no-bounce")
+          ) {
+            event.preventDefault();
+          }
+        },
+        false
+      );
+	</script>
+</body>
+
+</html>
